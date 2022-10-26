@@ -1,4 +1,5 @@
 import * as express from 'express';
+// import PostLogin from './controllers/PostLogin';
 
 class App {
   public app: express.Express;
@@ -10,6 +11,8 @@ class App {
 
     // Não remover essa rota
     this.app.get('/', (req, res) => res.json({ ok: true }));
+
+    this.app.get('/login', (req, res) => res.status(200).json({ oi: 'oiiii' }));
   }
 
   private config():void {

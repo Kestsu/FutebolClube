@@ -42,4 +42,11 @@ describe('Seu teste', () => {
   it('Seu sub-teste', () => {
     expect(false).to.be.eq(true);
   });
+//   it('PostUser',async () => {
+// const response = await chai.request(app).post('/login').send({
+//   "email": "string",
+//   "password": "string"
+// })
+// expect(response.status).to.equal(201)
+//   });
 });
