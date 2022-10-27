@@ -1,5 +1,6 @@
 import * as express from 'express';
-// import PostLogin from './controllers/PostLogin';
+import LoginRouter from './routes/LoginRouter';
+import TeamsRouter from './routes/TeamsRouter';
 
 class App {
   public app: express.Express;
@@ -11,8 +12,8 @@ class App {
 
     // Não remover essa rota
     this.app.get('/', (req, res) => res.json({ ok: true }));
-
-    this.app.get('/login', (req, res) => res.status(200).json({ oi: 'oiiii' }));
+    this.app.use(LoginRouter);
+    this.app.use(TeamsRouter);
   }
 
   private config():void {
@@ -26,6 +27,10 @@ class App {
     this.app.use(express.json());
     this.app.use(accessControl);
   }
+
+  // private routes():void {
+  //   this.app.get(PostLoginController);
+  // }
 
   public start(PORT: string | number):void {
     this.app.listen(PORT, () => console.log(`Running on port ${PORT}`));
