@@ -22,10 +22,22 @@ export default class MatchesService {
     return result;
   }
 
-//   async getOneId(id: number): Promise<Teams> {
-//     const [result] = await this.teamsModel.findAll({
-//       where: { id },
-//     });
-//     return result;
-//   }
+  async getMatchesQuery(inProgress: any): Promise<Matches[]> {
+    const result = await this.matchesModel.findAll({
+      where: { inProgress: inProgress.inProgress === 'true' },
+      include: [
+        { model: Teams,
+          as: 'teamHome',
+          attributes:
+        { exclude: ['id'] },
+        },
+        {
+          model: Teams,
+          as: 'teamAway',
+          attributes: { exclude: ['id'] },
+        },
+      ],
+    });
+    return result;
+  }
 }

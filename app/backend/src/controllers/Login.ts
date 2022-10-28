@@ -18,7 +18,7 @@ export default class Login {
 
   token = async (req:Request, res:Response) => {
     const token = req.header('authorization') || 'token';
-    const newUser = await this.service.verificationTokenEmail(token);
-    return res.status(200).json({ newUser });
+    const role = await this.service.verificationTokenEmail(token);
+    return res.status(200).json({ role });
   };
 }
