@@ -29,7 +29,7 @@ export default class MatchesController {
     const token = req.header('authorization');
     const firstTeam = await this.teamsService.getOneId(req.body.homeTeam);
     const secondTeam = await this.teamsService.getOneId(req.body.awayTeam);
-    await this.loginService.verificationTokenEmail(token);
+    // await this.loginService.verificationTokenEmail(token);
     // if (ai === 'error de token') {
     //   return res.status(401).json({});
     // }
