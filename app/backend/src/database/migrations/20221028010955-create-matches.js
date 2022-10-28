@@ -17,6 +17,10 @@ module.exports = {
       home_team: {
        type: Sequelize.INTEGER,
         allowNull: false,
+        references: { // referencias chave estrangeira
+          model: 'teams', // Nome da tabela q esta se referenciando
+          key: 'id', // o que esta referenciando de la
+        }
       },
       home_team_goals: {
        type: Sequelize.INTEGER,
@@ -25,6 +29,10 @@ module.exports = {
       away_team: {
        type: Sequelize.INTEGER,
         allowNull: false,
+        references: { // referencias chave estrangeira
+          model: 'teams', // Nome da tabela q esta se referenciando
+          key: 'id', // o que esta referenciando de la
+        }
       },
       away_team_goals: {
        type: Sequelize.INTEGER,
