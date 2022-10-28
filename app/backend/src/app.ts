@@ -11,7 +11,7 @@ class App {
     this.config();
 
     // Não remover essa rota
-    this.app.get('/', (req, res) => res.json({ ok: true }));
+    this.app.get('/', (req, res) => res.status(200).json({ ok: true }));
     this.app.use(LoginRouter);
     this.app.use(TeamsRouter);
   }

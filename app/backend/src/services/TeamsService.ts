@@ -4,7 +4,7 @@ export default class TeamsService {
   constructor(private teamsModel: typeof Teams) {
   }
 
-  async getTeams() {
+  async getTeams(): Promise<Teams[]> {
     const result = await this.teamsModel.findAll();
     return result;
   }
