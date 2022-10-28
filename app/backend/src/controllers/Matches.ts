@@ -29,10 +29,6 @@ export default class MatchesController {
     const token = req.header('authorization');
     const firstTeam = await this.teamsService.getOneId(req.body.homeTeam);
     const secondTeam = await this.teamsService.getOneId(req.body.awayTeam);
-    // await this.loginService.verificationTokenEmail(token);
-    // if (ai === 'error de token') {
-    //   return res.status(401).json({});
-    // }
 
     if (!firstTeam || !secondTeam) {
       return res.status(404).json({ message: 'There is no team with such id!' });
@@ -46,7 +42,17 @@ export default class MatchesController {
   };
 
   updateMatch = async (req:Request, res:Response) => {
-    await this.matchService.updateService(req.params.id);
+    const value = {
+      inProgress: false,
+    };
+    await this.matchService.updateService(req.params.id, value);
     return res.status(200).json({ message: 'Finished' });
+  };
+
+  updateGoals = async (req:Request, res:Response) => {
+    const { body } = req;
+
+    await this.matchService.updateService(req.params.id, body);
+    return res.status(200).json({ message: 'qualquer corpo' });
   };
 }

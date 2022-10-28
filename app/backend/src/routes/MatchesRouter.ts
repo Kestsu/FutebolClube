@@ -12,5 +12,6 @@ const routers = Router();
 routers.get('/matches', matchesController.getAll);
 routers.post('/matches', matchesTokenJWT, matchesController.saveNewMatch);
 routers.patch('/matches/:id/finish', matchesController.updateMatch);
+routers.patch('/matches/:id', matchesController.updateGoals);
 
 export default routers;

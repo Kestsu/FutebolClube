@@ -58,9 +58,9 @@ export default class MatchesService {
     return result;
   }
 
-  async updateService(id:number): Promise<void> {
+  async updateService(id:number, value:any): Promise<void> {
     await this.matchesModel.update(
-      { inProgress: false },
+      value,
       {
         where: { id },
       },

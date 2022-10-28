@@ -1,8 +1,6 @@
 import { Request, Response, NextFunction } from 'express';
 import { verify } from 'jsonwebtoken';
 
-require('dotenv/config');
-
 export default async (req: Request, res: Response, next: NextFunction) => {
   const token = req.headers.authorization;
   if (!token) {
