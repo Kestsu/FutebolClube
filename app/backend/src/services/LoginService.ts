@@ -39,12 +39,21 @@ export default class UserService {
   }
 
   async verificationTokenEmail(token: string): Promise<any> {
-    const { email } = verify(token, 'jwt_secret') as { email:string, role:string };
+    const payload = verify(token, 'jwt_secret') as { email:string, role:string };
+    // const { email } = payload;
+    // if (!payload) {
+    //   return 'error de token';
+    // }
+    console.log(payload);
+    const a = 'a';
+    if (!a) {
+      return { status: 401, resultado: 'Expired or invalid token' };
+    }
+    await this.userModel.findAll();
 
-    const newUser = await this.userModel.findOne({ where: { email } });
-    if (!newUser) {
+    if (!a) {
       return { status: 401, resultado: 'Incorrect email or password' };
     }
-    return newUser.role;
+    // return newUser.role;
   }
 }

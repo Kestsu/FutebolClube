@@ -1,8 +1,10 @@
 import Matches from '../database/models/Matches';
-import Teams from '../database/models/Teams';
+import Teams from '../database/models/Teams'; import User from '../database/models/User';
 
 export default class MatchesService {
-  constructor(private matchesModel: typeof Matches) {
+  service;
+  constructor(private matchesModel: typeof Matches, private LoginService: any) {
+    this.service = new LoginService(User);
   }
 
   async getMatches(): Promise<Matches[]> {
@@ -19,6 +21,7 @@ export default class MatchesService {
       },
       ],
     });
+    console.log(result.length);
     return result;
   }
 
@@ -29,7 +32,7 @@ export default class MatchesService {
         { model: Teams,
           as: 'teamHome',
           attributes:
-        { exclude: ['id'] },
+          { exclude: ['id'] },
         },
         {
           model: Teams,
@@ -39,5 +42,28 @@ export default class MatchesService {
       ],
     });
     return result;
+  }
+
+  async createMatch(body:any, token:string): Promise<Matches | any> {
+    await this.service.verificationTokenEmail(token);
+
+    if (body.homeTeam === body.awayTeam) {
+      throw new Error(
+        'It is not possible to create a match with two equal teams',
+      );
+    }
+
+    const result = await this.matchesModel.create({ inProgress: true, ...body });
+
+    return result;
+  }
+
+  async updateService(id:number): Promise<void> {
+    await this.matchesModel.update(
+      { inProgress: false },
+      {
+        where: { id },
+      },
+    );
   }
 }

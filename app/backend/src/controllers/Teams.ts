@@ -1,6 +1,5 @@
 import { Request, Response } from 'express';
 import Teams from '../database/models/Teams';
-// import TeamsService from '../services/TeamsService';
 
 export default class Times {
   service;

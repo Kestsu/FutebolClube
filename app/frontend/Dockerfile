@@ -4,13 +4,12 @@
 
 FROM node:16.14-alpine
 
-EXPOSE 3000
-
-ADD node_modules.tar.gz .
-
 WORKDIR /app-frontend
-COPY . . 
+
+COPY package.*json .
 
 RUN npm install
 
-ENTRYPOINT ["npm", "start"]∆
+COPY . . 
+ 
+ENTRYPOINT ["npm", "start"] 
