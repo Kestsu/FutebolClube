@@ -21,7 +21,6 @@ export default class MatchesService {
       },
       ],
     });
-    console.log(result.length);
     return result;
   }
 
