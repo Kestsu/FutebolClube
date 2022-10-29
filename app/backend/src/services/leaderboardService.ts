@@ -12,13 +12,14 @@ SUM(MA.home_team_goals > MA.away_team_goals) as totalVictories,
 SUM(MA.home_team_goals = MA.away_team_goals) as totalDraws,
 SUM(MA.home_team_goals < MA.away_team_goals) as totalLosses,
 SUM(MA.home_team_goals) as goalsFavor,
-SUM(MA.home_team_goals) as goalsOwn,
+SUM(MA.away_team_goals) as goalsOwn,
 SUM(MA.home_team_goals - MA.away_team_goals) as goalsBalance
 FROM TRYBE_FUTEBOL_CLUBE.matches AS MA
 INNER JOIN TRYBE_FUTEBOL_CLUBE.teams AS TE ON MA.home_team = TE.id
 WHERE MA.in_progress = 0
 GROUP BY MA.home_team) AS oi
-ORDER BY totalVictories DESC, goalsBalance DESC,  goalsFavor DESC,  goalsOwn ASC;`;
+ORDER BY totalPoints DESC, goalsBalance DESC, totalVictories DESC,
+ goalsFavor DESC, goalsOwn ASC;`;
 
 export default class leaderboardService {
   constructor(private sequelizeModel: typeof SequelizeModel) {

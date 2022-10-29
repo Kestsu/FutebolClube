@@ -9,6 +9,6 @@ export default class Leaderboard {
 
   board = async (req:Request, res:Response) => {
     const result = await this.service.leaderBoardHome();
-    return res.status(201).json(result);
+    return res.status(200).json(result);
   };
 }
