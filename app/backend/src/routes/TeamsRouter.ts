@@ -10,3 +10,5 @@ routers.get('/teams', TeamsController.get);
 routers.get('/teams/:id', TeamsController.getId);
 
 export default routers;
+
+// Como pegar o ultimo elemento de um array no js?
